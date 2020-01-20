@@ -51,6 +51,17 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        db_bill.set(list_bill[indexPath.row].name, forKey: "detail_bill_name")
+        db_bill.set(list_bill[indexPath.row].phone, forKey: "detail_bill_phone")
+        db_bill.set(list_bill[indexPath.row].shipdate, forKey: "detail_bill_shipdate")
+        db_bill.set(list_bill[indexPath.row].status, forKey: "detail_bill_status")
+        db_bill.set(list_bill[indexPath.row].product, forKey: "detail_bill_product")
+        db_bill.set(list_bill[indexPath.row].quantity, forKey: "detail_bill_quantity")
+        db_bill.set(list_bill[indexPath.row].note, forKey: "detail_bill_note")
+        let scr=storyboard?.instantiateViewController(identifier: "detail_bill") as! billDetailViewController
+        present(scr,animated: true,completion: nil)
+    }
     //---func
 
 }
