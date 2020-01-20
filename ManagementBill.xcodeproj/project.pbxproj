@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		3680674923D0CC540060BF71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680674823D0CC540060BF71 /* AppDelegate.swift */; };
 		3680674B23D0CC540060BF71 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680674A23D0CC540060BF71 /* SceneDelegate.swift */; };
-		3680674D23D0CC540060BF71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680674C23D0CC540060BF71 /* ViewController.swift */; };
 		3680675023D0CC540060BF71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3680674E23D0CC540060BF71 /* Main.storyboard */; };
 		3680675223D0CC570060BF71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3680675123D0CC570060BF71 /* Assets.xcassets */; };
 		3680675523D0CC570060BF71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3680675323D0CC570060BF71 /* LaunchScreen.storyboard */; };
+		3680675D23D0DF380060BF71 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 3680675C23D0DF380060BF71 /* image */; };
+		3680676623D109D90060BF71 /* class_obj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680676523D109D90060BF71 /* class_obj.swift */; };
+		3680676A23D133500060BF71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680676923D133500060BF71 /* ViewController.swift */; };
+		3680676C23D133630060BF71 /* billViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680676B23D133630060BF71 /* billViewController.swift */; };
+		3680676E23D134A60060BF71 /* billTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680676D23D134A60060BF71 /* billTableViewCell.swift */; };
+		3680677023D145210060BF71 /* addBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680676F23D145210060BF71 /* addBillViewController.swift */; };
+		3680677223D152DF0060BF71 /* newbillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3680677123D152DF0060BF71 /* newbillTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3680674523D0CC540060BF71 /* ManagementBill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManagementBill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3680674823D0CC540060BF71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3680674A23D0CC540060BF71 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3680674C23D0CC540060BF71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3680674F23D0CC540060BF71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3680675123D0CC570060BF71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3680675423D0CC570060BF71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3680675623D0CC570060BF71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3680675C23D0DF380060BF71 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
+		3680676523D109D90060BF71 /* class_obj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = class_obj.swift; sourceTree = "<group>"; };
+		3680676923D133500060BF71 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3680676B23D133630060BF71 /* billViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = billViewController.swift; sourceTree = "<group>"; };
+		3680676D23D134A60060BF71 /* billTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billTableViewCell.swift; sourceTree = "<group>"; };
+		3680676F23D145210060BF71 /* addBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBillViewController.swift; sourceTree = "<group>"; };
+		3680677123D152DF0060BF71 /* newbillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newbillTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +52,8 @@
 		3680673C23D0CC540060BF71 = {
 			isa = PBXGroup;
 			children = (
+				3680676523D109D90060BF71 /* class_obj.swift */,
+				3680675C23D0DF380060BF71 /* image */,
 				3680674723D0CC540060BF71 /* ManagementBill */,
 				3680674623D0CC540060BF71 /* Products */,
 			);
@@ -58,8 +72,12 @@
 			children = (
 				3680674823D0CC540060BF71 /* AppDelegate.swift */,
 				3680674A23D0CC540060BF71 /* SceneDelegate.swift */,
-				3680674C23D0CC540060BF71 /* ViewController.swift */,
 				3680674E23D0CC540060BF71 /* Main.storyboard */,
+				3680677123D152DF0060BF71 /* newbillTableViewCell.swift */,
+				3680676F23D145210060BF71 /* addBillViewController.swift */,
+				3680676923D133500060BF71 /* ViewController.swift */,
+				3680676D23D134A60060BF71 /* billTableViewCell.swift */,
+				3680676B23D133630060BF71 /* billViewController.swift */,
 				3680675123D0CC570060BF71 /* Assets.xcassets */,
 				3680675323D0CC570060BF71 /* LaunchScreen.storyboard */,
 				3680675623D0CC570060BF71 /* Info.plist */,
@@ -99,6 +117,7 @@
 				TargetAttributes = {
 					3680674423D0CC540060BF71 = {
 						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
@@ -125,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3680675D23D0DF380060BF71 /* image in Resources */,
 				3680675523D0CC570060BF71 /* LaunchScreen.storyboard in Resources */,
 				3680675223D0CC570060BF71 /* Assets.xcassets in Resources */,
 				3680675023D0CC540060BF71 /* Main.storyboard in Resources */,
@@ -138,9 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3680674D23D0CC540060BF71 /* ViewController.swift in Sources */,
+				3680676C23D133630060BF71 /* billViewController.swift in Sources */,
 				3680674923D0CC540060BF71 /* AppDelegate.swift in Sources */,
+				3680676E23D134A60060BF71 /* billTableViewCell.swift in Sources */,
 				3680674B23D0CC540060BF71 /* SceneDelegate.swift in Sources */,
+				3680676A23D133500060BF71 /* ViewController.swift in Sources */,
+				3680677223D152DF0060BF71 /* newbillTableViewCell.swift in Sources */,
+				3680677023D145210060BF71 /* addBillViewController.swift in Sources */,
+				3680676623D109D90060BF71 /* class_obj.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ManagementBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -292,6 +318,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-712041.ManagementBill";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ManagementBill/ManagementBill-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -301,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ManagementBill/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -309,6 +338,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-712041.ManagementBill";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ManagementBill/ManagementBill-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
