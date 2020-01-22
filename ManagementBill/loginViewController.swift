@@ -13,8 +13,11 @@ class loginViewController: UIViewController {
     
     //---Outlet
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     //---Action
+    @IBAction func loginButtonAction(_ sender: Any) {
+    }
     
     
     override func viewDidLoad() {
