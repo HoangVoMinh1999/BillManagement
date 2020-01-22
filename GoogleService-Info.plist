@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>17037626256-1uove30skhqpqjki1dk4anih4alm57bo.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.17037626256-1uove30skhqpqjki1dk4anih4alm57bo</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCC6r62kfrYn9jz9fKPi6T_yQdqOT45LXY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>17037626256</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>-712041.ManagementBill</string>
+	<key>PROJECT_ID</key>
+	<string>billmanagement-dd52d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>billmanagement-dd52d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:17037626256:ios:e79f0b26380697fd040115</string>
+	<key>DATABASE_URL</key>
+	<string>https://billmanagement-dd52d.firebaseio.com</string>
+</dict>
+</plist>

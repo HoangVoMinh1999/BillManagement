@@ -11,6 +11,7 @@ import UIKit
 class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     //---Outlet
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextFiled: UITextField!
     @IBOutlet weak var shipdateTextField: UITextField!
@@ -21,7 +22,6 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var productsTableView: UITableView!
-    @IBOutlet weak var deleteButton: UIButton!
     //---Paramater
     var new_bill=Bill(name: "", phone: "", product: [""], quantity: [""], note: "", shipdate: "", status: true)
     //---Action

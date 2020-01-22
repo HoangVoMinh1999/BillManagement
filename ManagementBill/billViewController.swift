@@ -24,7 +24,11 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let main_scr=storyboard?.instantiateViewController(identifier: "Main Screen") as! ViewController
         present(main_scr, animated: true, completion: nil)
     }
-    
+    @IBAction func addButtonAction(_ sender: Any) {
+        let scr=storyboard?.instantiateViewController(identifier: "new_bill") as! addBillViewController
+        db_bill.set("CREATE NEW BILL", forKey: "new_bill")
+        present(scr,animated: true,completion: nil)
+    }
     //---
     override func viewDidLoad() {
         super.viewDidLoad()
