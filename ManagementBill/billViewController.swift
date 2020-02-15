@@ -21,7 +21,7 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //---Action
     
     @IBAction func backButtonAction(_ sender: Any) {
-        let main_scr=storyboard?.instantiateViewController(identifier: "Main Screen") as! ViewController
+        let main_scr=storyboard?.instantiateViewController(identifier: "ViewController") as! ViewController
         present(main_scr, animated: true, completion: nil)
     }
     @IBAction func addButtonAction(_ sender: Any) {
