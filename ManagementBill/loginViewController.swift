@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class loginViewController: UIViewController {
     //---Variable
@@ -17,12 +18,25 @@ class loginViewController: UIViewController {
     
     //---Action
     @IBAction func loginButtonAction(_ sender: Any) {
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+            if (error==nil){
+                print("Login successfully !!!")
+                self!.loggedIn()
+            }
+            else{
+                let alert:UIAlertController=UIAlertController(title: "Warning", message: "Wrong email or password", preferredStyle: .alert)
+                let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self!.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loggedIn()
         // Do any additional setup after loading the view.
     }
     
@@ -37,4 +51,18 @@ class loginViewController: UIViewController {
     }
     */
 
+}
+extension UIViewController{
+    func loggedIn(){
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if (user != nil){
+                print("Logged in")
+                let viewController=self.storyboard?.instantiateViewController(identifier: "ViewController") as! ViewController
+                self.present(viewController, animated: true, completion: nil)
+            }
+            else{
+                print("Not login")
+            }
+        }
+    }
 }

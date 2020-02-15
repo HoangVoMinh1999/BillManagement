@@ -9,6 +9,12 @@
 import UIKit
 import Firebase
 
+// Get a reference to the storage service using the default Firebase App
+let storage = Storage.storage()
+
+// Create a storage reference from our storage service
+let storageRef = storage.reference()
+
 class registerViewController: UIViewController {
     //---Variable
     var imgData:Data!
@@ -54,47 +60,62 @@ class registerViewController: UIViewController {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { authResult, error in
             if (error == nil){
                 print("Dang ki thanh cong")
+                print("\(self.nameTextField.text!)")
                 Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { [weak self] authResult, error in
-                  guard let strongSelf = self else { return }
+                    guard self != nil else { return }
                     if (error==nil){
                         print("Dang nhap thanh cong")
+//                        let viewController=self?.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//                        self?.present(viewController, animated: true, completion: nil)
+                        
                     }
                     else{
                         print("Loi dang nhap")
                     }
                 }
-                // Get a reference to the storage service using the default Firebase App
-                let storage = Storage.storage()
-
-                // Create a storage reference from our storage service
-                let storageRef = storage.reference()
-
+                print("Hello")
                 // Create a reference to the file you want to upload
                 let avatarRef = storageRef.child("images/\(self.emailTextField.text!).jpg")
 
                 // Upload the file to the path "images/rivers.jpg"
                 let uploadTask = avatarRef.putData(self.imgData, metadata: nil) { (metadata, error) in
                   guard let metadata = metadata else {
-                    // Uh-oh, an error occurred!
+                    if (error != nil){
+                        print("Loi")
+                    }
+                    else{
+                        print("Ko loi")
+                    }
                     return
                   }
                   // Metadata contains file metadata such as size, content-type.
-                  let size = metadata.size
+                    _ = metadata.size
+                    print("hello 3")
                   // You can also access to download URL after upload.
                   avatarRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                      let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                        changeRequest?.displayName = self.emailTextField.text!
-                      changeRequest?.commitChanges { (error) in
-                        if (error==nil){
-                            print("Update Successfully")
+                    guard url != nil else {
+                        if (error == nil){
+                            print("Upload successfully !!!")
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                            changeRequest?.displayName = "Vo Minh Hoang"
+                            changeRequest?.commitChanges { (error) in
+                                if (error == nil){
+                                    print("Update successfully !!!")
+                                }
+                                else{
+                                    print("Fail")
+                                }
+                            }
                         }
+                        else{
+                            print("Fail to upload !!!")
                         }
                       return
                     }
                   }
                 }
-                    
+                print("Hello 2")
+                uploadTask.resume()
             }
             else{
                 let alert:UIAlertController=UIAlertController(title: "Warning", message: "Fail to register", preferredStyle: .alert)

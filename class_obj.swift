@@ -27,3 +27,30 @@ class Bill {
         self.status=status
     }
 }
+
+struct User {
+    let id:String!
+    let name:String!
+    let email:String!
+    let password:String!
+    let photo:UIImage!
+    let avatarURL:String!
+    
+    init() {
+        id=""
+        name=""
+        email=""
+        password=""
+        photo=UIImage(named: "Setting")
+        avatarURL=""
+    }
+    
+    init(id:String,name:String,email:String,avatarURL:String) {
+        self.id=id
+        self.name=name
+        self.email=email
+        self.avatarURL=avatarURL
+        photo=UIImage(named: "Setting")
+        password=""
+    }
+}
