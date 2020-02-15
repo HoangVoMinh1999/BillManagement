@@ -15,6 +15,8 @@ let storage = Storage.storage()
 // Create a storage reference from our storage service
 let storageRef = storage.reference()
 
+var ref: DatabaseReference!
+
 class registerViewController: UIViewController {
     //---Variable
     var imgData:Data!
@@ -65,8 +67,8 @@ class registerViewController: UIViewController {
                     guard self != nil else { return }
                     if (error==nil){
                         print("Dang nhap thanh cong")
-//                        let viewController=self?.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-//                        self?.present(viewController, animated: true, completion: nil)
+                        let viewController=self?.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                        self?.present(viewController, animated: true, completion: nil)
                         
                     }
                     else{
@@ -96,16 +98,7 @@ class registerViewController: UIViewController {
                     guard url != nil else {
                         if (error == nil){
                             print("Upload successfully !!!")
-                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                            changeRequest?.displayName = "Vo Minh Hoang"
-                            changeRequest?.commitChanges { (error) in
-                                if (error == nil){
-                                    print("Update successfully !!!")
-                                }
-                                else{
-                                    print("Fail")
-                                }
-                            }
+                            
                         }
                         else{
                             print("Fail to upload !!!")
@@ -116,6 +109,17 @@ class registerViewController: UIViewController {
                 }
                 print("Hello 2")
                 uploadTask.resume()
+                let current_user = Auth.auth().currentUser
+                if current_user != nil {
+                    ref = Database.database().reference()
+                    let list_user=ref.child("List_User")
+                    let userID=list_user.child(current_user!.uid)
+//                    let user:User=User(id: current_user!.uid, name: self.nameTextField.text!, email: self.emailTextField.text!, avatarURL: "gs://billmanagement-dd52d.appspot.com/image/\(String(describing: self.emailTextField.text))")
+                    let user:Dictionary<String,String>=["id": current_user!.uid, "name": self.nameTextField.text!, "email": self.emailTextField.text!, "avatarURL": "gs://billmanagement-dd52d.appspot.com/image/\(String(describing: self.emailTextField.text))"]
+                    userID.setValue(user)
+                } else {
+                  print("Fail !!!")
+                }
             }
             else{
                 let alert:UIAlertController=UIAlertController(title: "Warning", message: "Fail to register", preferredStyle: .alert)
