@@ -10,14 +10,8 @@ import Firebase
        
 class categoryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ref = Database.database().reference()
-        var number:Int!
-        let data = ref.child("List_Items").observe(DataEventType.value, with: { (snapshot) in
-        let items = snapshot.value as? NSDictionary ?? [:]
-        let list_items:Array<Dictionary<String,String>>=Array(items.allValues) as! Array<Dictionary<String, String>>
-            number=list_items.count
-        })
-        return number
+        var number=category.value(forKey: "amount_of_items")
+        return number as! Int
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,7 +23,7 @@ class categoryViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let list_items:Array<Dictionary<String,String>>=Array(items.allValues) as! Array<Dictionary<String, String>>
             cell.nameLabel.text=list_items[indexPath.row]["Item"]
             cell.amountLabel.text=list_items[indexPath.row]["Amount"]
-            cell.itemImageView.image=UIImage(contentsOfFile: list_items[indexPath.row]["photoURL"]!)
+            cell.itemImageView.loadImage(link: list_items[indexPath.row]["photoURL"]!)
         })
 
         return cell
@@ -67,4 +61,33 @@ class categoryViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
 }
-
+extension UIImageView{
+    func loadImage(link:String){
+        let queue:DispatchQueue=DispatchQueue(label: "Load Image", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+        let action:UIActivityIndicatorView=UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        action.frame = CGRect(x: self.frame.size.width/2, y: self.frame.size.height/2, width: 0, height: 0)
+        action.color = UIColor.gray
+        self.addSubview(action)
+        action.startAnimating()
+        
+        queue.async {
+            print(link)
+            let url:URL = URL(string: link)!
+            do{
+                print("Hello")
+                let data:Data = try Data(contentsOf: url)
+                print("Hello 1")
+                DispatchQueue.main.async {
+                    print("Hello 2")
+                    action.stopAnimating()
+                    self.image=UIImage(data: data)
+                }
+                
+            }
+            catch{
+                action.stopAnimating()
+                print("Loi load hinh")
+            }
+        }
+    }
+}

@@ -66,7 +66,7 @@ class editItemViewController: UIViewController {
                 
         let List_Items=ref.child("List_Items")
         let itemName=List_Items.child("\(nameTextField.text!)")
-        let item:Dictionary<String,String>=["Item":nameTextField.text!,"Amount":amountTextField.text!,"photoURL":"gs://billmanagement-dd52d.appspot.com/Item/\(nameTextField.text!).jpg"]
+        let item:Dictionary<String,String>=["Item":nameTextField.text!,"Amount":amountTextField.text!,"photoURL":"gs://billmanagement-dd52d.appspot.com/Item/\(nameTextField.text!)"]
         //---Check item existed
         ref.child("List_Items").child("\(nameTextField.text!)").observeSingleEvent(of: .value, with: { (snapshot) in
 

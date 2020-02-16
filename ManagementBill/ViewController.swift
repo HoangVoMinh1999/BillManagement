@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var incomeButton: UIButton!
     //---Paramater
     var currentUser:User!
+    var category = UserDefaults()
     //---Action
     @IBAction func billButtonAction(_ sender: Any) {
         let billScreen = storyboard?.instantiateViewController(identifier: "bill_screen") as! billViewController
@@ -50,7 +51,16 @@ class ViewController: UIViewController {
           // ...
           }) { (error) in
             print(error.localizedDescription)
-        }        // Do any additional setup after loading the view.
+        }
+        //---Load amount of list_item
+        let data = ref.child("List_Items").observe(DataEventType.value, with: { (snapshot) in
+        let items = snapshot.value as? NSDictionary ?? [:]
+        let list_items:Array<Dictionary<String,String>>=Array(items.allValues) as! Array<Dictionary<String, String>>
+            print(list_items.count)
+            self.category.set(list_items.count, forKey: "amount_of_items")
+        })
+
+        // Do any additional setup after loading the view.
     }
 
 

@@ -115,7 +115,7 @@ class registerViewController: UIViewController {
                     let list_user=ref.child("List_User")
                     let userID=list_user.child(current_user!.uid)
 //                    let user:User=User(id: current_user!.uid, name: self.nameTextField.text!, email: self.emailTextField.text!, avatarURL: "gs://billmanagement-dd52d.appspot.com/image/\(String(describing: self.emailTextField.text))")
-                    let user:Dictionary<String,String>=["id": current_user!.uid, "name": self.nameTextField.text!, "email": self.emailTextField.text!, "avatarURL": "gs://billmanagement-dd52d.appspot.com/image/\(String(describing: self.emailTextField.text!)).jpg"]
+                    let user:Dictionary<String,String>=["id": current_user!.uid, "name": self.nameTextField.text!, "email": self.emailTextField.text!, "avatarURL": "gs://billmanagement-dd52d.appspot.com/image/\(String(describing: self.emailTextField.text!))"]
                     userID.setValue(user)
                 } else {
                   print("Fail !!!")
