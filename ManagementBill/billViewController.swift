@@ -43,6 +43,7 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return list_bill.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:billTableViewCell=billTableViewController.dequeueReusableCell(withIdentifier: "bill_Cell") as! billTableViewCell
         cell.nameLabel.text=list_bill[indexPath.row].name

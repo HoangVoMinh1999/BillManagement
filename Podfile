@@ -13,5 +13,8 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Database'
+pod 'RLBAlertsPickers','~>1.1.1'
+
+
 
 end

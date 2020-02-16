@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import RLBAlertsPickers
+
+
 
 class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -24,6 +28,8 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var productsTableView: UITableView!
     //---Paramater
     var new_bill=Bill(name: "", phone: "", product: [""], quantity: [""], note: "", shipdate: "", status: true)
+    var date:Date!
+    var size = UIScreen.main.bounds
     //---Action
     @IBAction func addButtonAction(_ sender: Any) {
         let alert:UIAlertController=UIAlertController(title: "Add item", message: "Choose item and quantity", preferredStyle: .alert)
@@ -78,12 +84,36 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
         new_bill.phone=phoneTextFiled.text!
         new_bill.note=noteTextField.text!
         new_bill.shipdate=shipdateTextField.text!
+        
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference()
+        
+        let list_bills=ref.child("List_Bills")
+        let bill=list_bills.childByAutoId()
+        
+        let current_bill:Dictionary<String,Any>=["guestName":"\(new_bill.name)","guestPhone":"\(new_bill.phone)","shipdate":"\(new_bill.shipdate)","detail_items":"\(new_bill.product)","detail_amount":"\(new_bill.quantity)","status":"\(new_bill.status)","note":"\(new_bill.note)"]
+        bill.setValue(current_bill)
         let billScreen=storyboard?.instantiateViewController(identifier: "bill_screen") as! billViewController
-        billScreen.list_bill.append(new_bill)
         present(billScreen,animated: true,completion: nil)
     }
+    @IBAction func shipDateAction(_ sender: Any) {
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: size.width, height: 300))
+        datePicker.sizeToFit()
+        datePicker.datePickerMode = .date
+        alert.view.addSubview(datePicker)
+        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.shipdateTextField.text = datePicker.date.dateToString()
+        }
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+//        alert.show()
+        self.present(alert,animated:true,completion: nil)
+    }
     
-    
+    //---viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         statusLabel.text="Ready"
@@ -95,6 +125,7 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return new_bill.product.count
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:newbillTableViewCell=productsTableView.dequeueReusableCell(withIdentifier: "item_cell") as! newbillTableViewCell
@@ -109,14 +140,15 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+extension Date{
+    func dateToString() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat="dd-MM-yyyy"
+        let str = dateFormatter.string(from: self)
+        return str
+    }
+}
+

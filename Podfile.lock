@@ -96,12 +96,14 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - RLBAlertsPickers (1.1.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
+  - RLBAlertsPickers (~> 1.1.1)
 
 SPEC REPOS:
   trunk:
@@ -124,6 +126,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - RLBAlertsPickers
 
 SPEC CHECKSUMS:
   Firebase: 5d77105d9740a07ca6b16927ca971db7e860faaf
@@ -145,7 +148,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  RLBAlertsPickers: 2548943b0cb16620904cbd926a645362d1b43963
 
-PODFILE CHECKSUM: 7b476fbede8405cff889c7d8f45e13eb8c787f75
+PODFILE CHECKSUM: ad49a7814121be287d0d1061faea7f60bde80737
 
 COCOAPODS: 1.8.4
