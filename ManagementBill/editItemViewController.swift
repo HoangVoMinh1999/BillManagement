@@ -14,6 +14,8 @@ class editItemViewController: UIViewController {
     var category = UserDefaults()
     var imgItemData:Data!
     var ref: DatabaseReference!
+    
+    var position=0 // Use for upload realtime database
     //---Outlet
     @IBOutlet weak var editItemLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -61,11 +63,12 @@ class editItemViewController: UIViewController {
         let storageRef = storage.reference()
         //---Upload to Realtime Database
         ref = Database.database().reference()
-        let List_Item=ref.child("List_Item")
-        let itemName=List_Item.child("\(nameTextField.text!)")
+                
+        let List_Items=ref.child("List_Items")
+        let itemName=List_Items.child("\(nameTextField.text!)")
         let item:Dictionary<String,String>=["Item":nameTextField.text!,"Amount":amountTextField.text!,"photoURL":"gs://billmanagement-dd52d.appspot.com/Item/\(nameTextField.text!).jpg"]
         //---Check item existed
-        ref.child("List_Item").child("\(nameTextField.text!)").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("List_Items").child("\(nameTextField.text!)").observeSingleEvent(of: .value, with: { (snapshot) in
 
           let value = snapshot.value as? NSDictionary
             if (value == nil){

@@ -54,3 +54,15 @@ struct User {
         password=""
     }
 }
+
+class Item{
+    let item:String
+    let amount:String
+    let photoURL:String
+    
+    init(item:String,amount:String,photoURL:String) {
+        self.item=item
+        self.amount=amount
+        self.photoURL=photoURL
+    }
+}
