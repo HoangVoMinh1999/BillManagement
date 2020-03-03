@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class billDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //---Outlet
@@ -29,21 +30,26 @@ class billDetailViewController: UIViewController,UITableViewDelegate,UITableView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scr=storyboard?.instantiateViewController(identifier: "bill_screen")
-        nameLabel.text=db_detail_bill.value(forKey: "detail_bill_name") as! String
-        phoneLabel.text=db_detail_bill.value(forKey: "detail_bill_phone") as! String
-        shipdateLabel.text=db_detail_bill.value(forKey: "detail_bill_shipdate") as! String
-        noteLabel.text=db_detail_bill.value(forKey: "detail_bill_note") as! String
-        if (db_detail_bill.value(forKey: "detail_bill_status") as! Bool == true)
-        {
-            statusLabel.text="Ready"
+        let ID:String = db_detail_bill.value(forKey: "ID") as! String
+        let date:String = db_detail_bill.value(forKey:"shipDate") as! String
+        
+        var ref: DatabaseReference!
+
+        ref = Database.database().reference()
+        
+        ref.child("List_Bills").child(date).child(ID).observeSingleEvent(of: .value, with: { (snapshot) in
+          // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.nameLabel.text=value!["guestName"] as? String
+            self.phoneLabel.text=value!["guestPhone"] as? String
+            self.noteLabel.text=value!["note"] as? String
+            self.shipdateLabel.text=value!["shipdate"] as? String
+//            self.items.append(value!["detail_items"])
+//            self.quantity.append(value!["detail_amount"])
+          // ...
+          }) { (error) in
+            print(error.localizedDescription)
         }
-        else
-        {
-            statusLabel.text="Delivered"
-        }
-        items = db_detail_bill.value(forKey: "detail_bill_product") as! Array<String>
-        quantity = db_detail_bill.value(forKey: "detail_bill_quantity") as! Array<String>
         // Do any additional setup after loading the view.
         itemTableView.delegate=self
         itemTableView.dataSource=self
@@ -55,8 +61,7 @@ class billDetailViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:billDetailTableViewCell=itemTableView.dequeueReusableCell(withIdentifier: "detail_cell") as! billDetailTableViewCell
-        cell.itemLabel.text=items[indexPath.row]
-        cell.quantityLabel.text=quantity[indexPath.row]
+        
         return cell
     }
     

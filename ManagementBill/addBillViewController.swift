@@ -90,7 +90,8 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
         ref = Database.database().reference()
         
         let list_bills=ref.child("List_Bills")
-        let bill=list_bills.childByAutoId()
+        let bills_by_day=list_bills.child("\(new_bill.shipdate)")
+        let bill=bills_by_day.childByAutoId()
         
         let current_bill:Dictionary<String,Any>=["guestName":"\(new_bill.name)","guestPhone":"\(new_bill.phone)","shipdate":"\(new_bill.shipdate)","detail_items":"\(new_bill.product)","detail_amount":"\(new_bill.quantity)","status":"\(new_bill.status)","note":"\(new_bill.note)"]
         bill.setValue(current_bill)
@@ -111,6 +112,10 @@ class addBillViewController: UIViewController,UITableViewDelegate,UITableViewDat
         alert.addAction(cancelButton)
 //        alert.show()
         self.present(alert,animated:true,completion: nil)
+    }
+    @IBAction func backButton(_ sender: Any) {
+        let billScreen=storyboard?.instantiateViewController(identifier: "bill_screen") as! billViewController
+        present(billScreen,animated: true,completion: nil)
     }
     
     //---viewDidLoad

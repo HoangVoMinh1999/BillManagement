@@ -847,6 +847,9 @@
                                 <rect key="frame" x="20" y="804" width="61" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="backButton"/>
+                                <connections>
+                                    <action selector="backButton:" destination="6Ut-yI-00z" eventType="touchUpInside" id="B6X-HY-LXd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CREATE NEW BILL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVR-Zy-uLb">
                                 <rect key="frame" x="20" y="94" width="374" height="42"/>

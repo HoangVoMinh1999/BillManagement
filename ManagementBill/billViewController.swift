@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -15,9 +16,7 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var billTableViewController: UITableView!
     //---Paramater
     var db_bill:UserDefaults=UserDefaults()
-    
-    var new_bill = Bill(name: "Tran Dang Khoa", phone: "0909090", product: ["Cuff","iWatch"], quantity: ["10","10"], note: "Silver",shipdate: "02/02/2021", status: true)
-    var list_bill:Array<Bill>=[]
+    var ref: DatabaseReference!
     //---Action
     
     @IBAction func backButtonAction(_ sender: Any) {
@@ -32,7 +31,6 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //---
     override func viewDidLoad() {
         super.viewDidLoad()
-        list_bill.append(new_bill)
         billTableViewController.delegate=self
         billTableViewController.dataSource=self
         billTableViewController.reloadData()
@@ -40,30 +38,24 @@ class billViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     //---func
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list_bill.count
+
+        return db_bill.value(forKey: "amount_of_bills") as! Int
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let list_bills:Array<Dictionary<String,String>>=self.db_bill.value(forKey: "list_of_bills") as! Array<Dictionary<String, String>>
         let cell:billTableViewCell=billTableViewController.dequeueReusableCell(withIdentifier: "bill_Cell") as! billTableViewCell
-        cell.nameLabel.text=list_bill[indexPath.row].name
-        cell.shipDateLabel.text=list_bill[indexPath.row].shipdate
-        if (list_bill[indexPath.row].status == true){
-            cell.statusLabel.text="Ready"
-        }
-        else{
-            cell.statusLabel.text="Delivered"
-        }
+        cell.nameLabel.text = list_bills[indexPath.row]["guestName"]
+        cell.shipDateLabel.text = list_bills[indexPath.row]["shipdate"]
+        cell.statusLabel.text = list_bills[indexPath.row]["status"]
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        db_bill.set(list_bill[indexPath.row].name, forKey: "detail_bill_name")
-        db_bill.set(list_bill[indexPath.row].phone, forKey: "detail_bill_phone")
-        db_bill.set(list_bill[indexPath.row].shipdate, forKey: "detail_bill_shipdate")
-        db_bill.set(list_bill[indexPath.row].status, forKey: "detail_bill_status")
-        db_bill.set(list_bill[indexPath.row].product, forKey: "detail_bill_product")
-        db_bill.set(list_bill[indexPath.row].quantity, forKey: "detail_bill_quantity")
-        db_bill.set(list_bill[indexPath.row].note, forKey: "detail_bill_note")
+        let list_bills:Array<Dictionary<String,String>>=self.db_bill.value(forKey: "list_of_bills") as! Array<Dictionary<String, String>>
+        let list_IDs:Array<String>=self.db_bill.value(forKey: "list_of_ID") as! Array<String>
+        db_bill.set(list_bills[indexPath.row]["shipdate"], forKey: "shipDate")
+        db_bill.set(list_IDs[indexPath.row],forKey:"ID")
         let scr=storyboard?.instantiateViewController(identifier: "detail_bill") as! billDetailViewController
         present(scr,animated: true,completion: nil)
     }
